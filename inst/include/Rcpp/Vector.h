@@ -47,9 +47,9 @@ namespace Rcpp{
 
 #include <Rcpp/vector/converter.h>
 #include <Rcpp/vector/RangeIndexer.h>
-#include <Rcpp/vector/Vector.h>
-#include <Rcpp/vector/proxy.h>
 #include <Rcpp/vector/traits.h>
+#include <Rcpp/vector/proxy.h>
+#include <Rcpp/vector/Vector.h>
 
 #include <Rcpp/vector/DimNameProxy.h>
 

@@ -23,6 +23,6 @@
 #define Rcpp__vector__forward_Vector_h
 
 namespace Rcpp{
-    template <int RTYPE, template <class> class StoragePolicy> class Vector ;
+    template <int RTYPE, template <class> class StoragePolicy = PreserveStorage> class Vector ;
 }
 #endif

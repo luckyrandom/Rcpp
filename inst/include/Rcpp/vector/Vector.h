@@ -26,7 +26,7 @@
 
 namespace Rcpp{
 
-template <int RTYPE, template <class> class StoragePolicy = PreserveStorage >
+template <int RTYPE, template <class> class StoragePolicy >
 class Vector :
     public StoragePolicy< Vector<RTYPE,StoragePolicy> >,
     public SlotProxyPolicy< Vector<RTYPE,StoragePolicy> >,
@@ -92,13 +92,13 @@ public:
     // constructor for CharacterVector() 
     Vector( const std::string& st ){
         RCPP_DEBUG_2( "Vector<%d>( const std::string& = %s )", RTYPE, st.c_str() )
-        Storage::set__( internal::vector_from_string<RTYPE>(st) ) ;
+        Rf_error("The Vector(std::string) constructor is for CharacterVector only.");
     }
 
     // constructor for CharacterVector() 
     Vector( const char* st ) {
         RCPP_DEBUG_2( "Vector<%d>( const char* = %s )", RTYPE, st )
-        Storage::set__(internal::vector_from_string<RTYPE>(st) ) ;
+        Rf_error("The Vector(char*) constructor is for CharacterVector only.");
     }
 
     Vector( const int& siz, stored_type (*gen)(void) ) {
@@ -1028,6 +1028,22 @@ public:
 
 
 } ; /* Vector */
+
+// constructor for CharacterVector()
+template<>
+inline
+Vector<STRSXP>::Vector( const std::string& st ){
+    RCPP_DEBUG_2( "Vector<%d>( const std::string& = %s )", STRSXP, st.c_str() )
+    Storage::set__( internal::vector_from_string<STRSXP>(st) ) ;
+}
+
+// constructor for CharacterVector()
+template<>
+inline
+Vector<STRSXP>::Vector( const char* st ) {
+    RCPP_DEBUG_2( "Vector<%d>( const char* = %s )", RTYPE, st )
+    Storage::set__(internal::vector_from_string<STRSXP>(st) ) ;
+}
 
 }
 
