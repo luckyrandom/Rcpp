@@ -421,6 +421,16 @@ if (.runThisTest) {
         checkEquals( fun(), rep("foo",10L), msg = "CharacterVector" )
     }
 
+    test.CharacterVector.char.pointer <- function(){
+        fun <- character_ctor_char_pointer
+        checkEquals( fun(), rep("foo",1L), msg = "CharacterVector" )
+    }
+
+    test.CharacterVector.string <- function(){
+        fun <- character_ctor_string
+        checkEquals( fun(), rep("foo",1L), msg = "CharacterVector" )
+    }
+
     test.CharacterVector.STRSXP <- function(){
         fun <- character_STRSXP_
         checkEquals( fun(letters), paste(letters,collapse="" ), msg = "CharacterVector( STRSXP) " )

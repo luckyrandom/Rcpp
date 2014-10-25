@@ -439,6 +439,18 @@ List list_stdcomplex(){
 }
 
 // [[Rcpp::export]]
+CharacterVector character_ctor_char_pointer(){
+    CharacterVector x("foo") ;
+    return x ;
+}
+
+// [[Rcpp::export]]
+CharacterVector character_ctor_string(){
+    CharacterVector x(std::string("foo")) ;
+    return x ;
+}
+
+// [[Rcpp::export]]
 CharacterVector character_ctor(){
     CharacterVector x(10) ;
     for( int i=0; i<10; i++) x[i] = "foo" ;
