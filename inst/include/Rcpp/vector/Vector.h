@@ -92,13 +92,13 @@ public:
     // constructor for CharacterVector() 
     Vector( const std::string& st ){
         RCPP_DEBUG_2( "Vector<%d>( const std::string& = %s )", RTYPE, st.c_str() )
-        Rf_error("The Vector(std::string) constructor is for CharacterVector only.");
+        Rf_error("The Vector(std::string) constructor only supprots CharacterVector and ExpressionVector.");
     }
 
     // constructor for CharacterVector() 
     Vector( const char* st ) {
         RCPP_DEBUG_2( "Vector<%d>( const char* = %s )", RTYPE, st )
-        Rf_error("The Vector(char*) constructor is for CharacterVector only.");
+        Rf_error("The Vector(char*) constructor only supprots CharacterVector and ExpressionVector.");
     }
 
     Vector( const int& siz, stored_type (*gen)(void) ) {
@@ -1043,6 +1043,22 @@ inline
 Vector<STRSXP>::Vector( const char* st ) {
     RCPP_DEBUG_2( "Vector<%d>( const char* = %s )", RTYPE, st )
     Storage::set__(internal::vector_from_string<STRSXP>(st) ) ;
+}
+
+// constructor for ExpressoinVector()
+template<>
+inline
+Vector<EXPRSXP>::Vector( const std::string& st ){
+    RCPP_DEBUG_2( "Vector<%d>( const std::string& = %s )", EXPRSXP, st.c_str() )
+    Storage::set__( internal::vector_from_string<EXPRSXP>(st) ) ;
+}
+
+// constructor for ExpressoinVector()
+template<>
+inline
+Vector<EXPRSXP>::Vector( const char* st ) {
+    RCPP_DEBUG_2( "Vector<%d>( const char* = %s )", RTYPE, st )
+    Storage::set__(internal::vector_from_string<EXPRSXP>(st) ) ;
 }
 
 }
